@@ -6,7 +6,6 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
@@ -37,7 +36,6 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="/(routes)/onboarding" />
       </Stack>
-      <StatusBar style="auto" />
     </ThemeProvider>
   );
 }
