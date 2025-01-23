@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function OnBoardingScreen() {
@@ -10,6 +10,7 @@ export default function OnBoardingScreen() {
       end={{ x: 1, y: 1 }}
       style={styles.container}
     >
+      <StatusBar barStyle="light-content" />
       <Text>OnBoardingScreen</Text>
     </LinearGradient>
   );
