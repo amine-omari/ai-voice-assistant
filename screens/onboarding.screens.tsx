@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import OnBoarding1 from "@/assets/svgs/onboarding1";
 
 export default function OnBoardingScreen() {
   return (
@@ -11,6 +12,7 @@ export default function OnBoardingScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
+      <OnBoarding1 />
     </LinearGradient>
   );
 }
