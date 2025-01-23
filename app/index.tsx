@@ -1,10 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React, { useState } from "react";
 
 export default function index() {
-  return (
-    <View>
-      <Text>index</Text>
-    </View>
-  )
+  const [isOnboarding, setIsOnboarding] = useState(true);
+  return <View></View>;
 }
