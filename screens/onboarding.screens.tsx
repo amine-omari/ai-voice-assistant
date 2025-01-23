@@ -4,7 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function OnBoardingScreen() {
   return (
-    <LinearGradient colors={["#250152", "#000000"]}>
+    <LinearGradient
+      colors={["#250152", "#000000"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
       <Text>OnBoardingScreen</Text>
     </LinearGradient>
   );
