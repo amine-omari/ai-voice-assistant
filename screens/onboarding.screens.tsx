@@ -102,17 +102,17 @@ const styles = StyleSheet.create({
   },
   paginationContainer: {
     position: "absolute",
-    bottom: verticalScale(30),
+    bottom: verticalScale(50),
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     gap: scale(10),
   },
   dot: {
-    width: scale(10),
-    height: scale(10),
+    width: scale(8),
+    height: scale(8),
     borderRadius: 100,
     backgroundColor: "#fff",
-    marginHorizontal: scale(5),
+    marginHorizontal: scale(2),
   },
 });
