@@ -47,7 +47,7 @@ export default function OnBoardingScreen() {
       <StatusBar barStyle="light-content" />
       <View style={styles.skipContainer}>
         <Text style={styles.skipText}>Skip</Text>
-        <AntDesign name="arrowright" size={scale(20)} color="white" />
+        <AntDesign name="arrowright" size={scale(18)} color="white" />
       </View>
       <ScrollView
         horizontal
