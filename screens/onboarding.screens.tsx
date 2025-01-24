@@ -3,6 +3,7 @@ import {
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Pressable,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -37,6 +38,19 @@ export default function OnBoardingScreen() {
     setActiveIndex(currentIndex);
   };
 
+  const handleSkip = () => {
+    const nextIndex = activeIndex + 1;
+    if (nextIndex < onBoardingData.length) {
+      scrollViewRef.current?.scrollTo({
+        x: Dimensions.get("window").width * nextIndex,
+        animated: true,
+      });
+      setActiveIndex(nextIndex);
+    } else {
+      console.log("last index");
+    }
+  };
+
   return (
     <LinearGradient
       colors={["#250152", "#000000"]}
@@ -45,10 +59,10 @@ export default function OnBoardingScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
-      <View style={styles.skipContainer}>
+      <Pressable style={styles.skipContainer} onPress={handleSkip}>
         <Text style={styles.skipText}>Skip</Text>
         <AntDesign name="arrowright" size={scale(18)} color="white" />
-      </View>
+      </Pressable>
       <ScrollView
         horizontal
         pagingEnabled
