@@ -44,6 +44,9 @@ export default function OnBoardingScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
+      <View style={styles.skipContainer}>
+        <Text></Text>
+      </View>
       <ScrollView
         horizontal
         pagingEnabled
@@ -114,5 +117,10 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "#fff",
     marginHorizontal: scale(2),
+  },
+  skipContainer: {
+    position: "absolute",
+    top: verticalScale(20),
+    right: scale(20),
   },
 });
