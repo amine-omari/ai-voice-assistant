@@ -45,7 +45,7 @@ export default function OnBoardingScreen() {
     >
       <StatusBar barStyle="light-content" />
       <View style={styles.skipContainer}>
-        <Text>Skip</Text>
+        <Text style={styles.skipText}>Skip</Text>
       </View>
       <ScrollView
         horizontal
