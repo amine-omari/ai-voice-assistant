@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: scale(10),
+    gap: scale(8),
   },
   dot: {
     width: scale(8),
