@@ -125,6 +125,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: verticalScale(45),
     right: scale(30),
+    flexDirection: "row",
+    alignItems: "center",
+    gap: scale(5),
   },
   skipText: {
     color: "#fff",
