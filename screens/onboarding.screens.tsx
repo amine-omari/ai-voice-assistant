@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   skipText: {
     color: "#fff",
-    fontSize: scale(14),
+    fontSize: scale(16),
     fontWeight: "400",
     fontFamily: "SegoeUI",
   },
