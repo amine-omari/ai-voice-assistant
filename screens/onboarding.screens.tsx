@@ -106,5 +106,6 @@ const styles = StyleSheet.create({
     height: scale(10),
     borderRadius: 100,
     backgroundColor: "#fff",
+    marginHorizontal: scale(5),
   },
 });
