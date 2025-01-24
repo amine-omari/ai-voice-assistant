@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
@@ -13,9 +13,11 @@ export default function OnBoardingScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
-      {onBoardingData.map((item: onBoardingDataType, index: number) => (
-        <View key={index}></View>
-      ))}
+      <ScrollView horizontal>
+        {onBoardingData.map((item: onBoardingDataType, index: number) => (
+          <View key={index}></View>
+        ))}
+      </ScrollView>
     </LinearGradient>
   );
 }
