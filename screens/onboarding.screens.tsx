@@ -14,6 +14,7 @@ import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
 import { scale, verticalScale } from "react-native-size-matters";
 import { useFonts } from "expo-font";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function OnBoardingScreen() {
   let [fontLoaded, fontError] = useFonts({
@@ -46,6 +47,7 @@ export default function OnBoardingScreen() {
       <StatusBar barStyle="light-content" />
       <View style={styles.skipContainer}>
         <Text style={styles.skipText}>Skip</Text>
+        <AntDesign name="arrowright" size={scale(20)} color="white" />
       </View>
       <ScrollView
         horizontal
