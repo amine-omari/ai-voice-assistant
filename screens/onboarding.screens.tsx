@@ -120,7 +120,13 @@ const styles = StyleSheet.create({
   },
   skipContainer: {
     position: "absolute",
-    top: verticalScale(20),
-    right: scale(20),
+    top: verticalScale(45),
+    right: scale(30),
+  },
+  skipText: {
+    color: "#fff",
+    fontSize: scale(14),
+    fontWeight: "400",
+    fontFamily: "SegoeUI",
   },
 });
