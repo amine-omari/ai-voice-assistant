@@ -59,6 +59,8 @@ export default function OnBoardingScreen() {
           </View>
         ))}
       </ScrollView>
+
+      <View style={styles.paginationContainer}></View>
     </LinearGradient>
   );
 }
@@ -90,5 +92,13 @@ const styles = StyleSheet.create({
     width: scale(290),
     marginHorizontal: "auto",
     paddingTop: verticalScale(10),
+  },
+  paginationContainer: {
+    position: "absolute",
+    bottom: verticalScale(30),
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: scale(10),
   },
 });
