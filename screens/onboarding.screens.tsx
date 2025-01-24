@@ -40,6 +40,7 @@ export default function OnBoardingScreen() {
 
   const handleSkip = () => {
     const nextIndex = activeIndex + 1;
+
     if (nextIndex < onBoardingData.length) {
       scrollViewRef.current?.scrollTo({
         x: Dimensions.get("window").width * nextIndex,
@@ -64,11 +65,11 @@ export default function OnBoardingScreen() {
         <AntDesign name="arrowright" size={scale(18)} color="white" />
       </Pressable>
       <ScrollView
+        ref={scrollViewRef}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={handleScroll}
-        ref={scrollViewRef}
       >
         {onBoardingData.map((item: onBoardingDataType, index: number) => (
           <View key={index} style={styles.slide}>
