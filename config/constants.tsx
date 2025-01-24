@@ -1,7 +1,7 @@
 import OnBoarding1 from "@/assets/svgs/onboarding1";
-import { onBoardingDataData } from "./global";
+import { onBoardingDataType } from "./global";
 
-export const onBoardingData: onBoardingDataData[] = [
+export const onBoardingData: onBoardingDataType[] = [
   {
     id: 1,
     title: "",
