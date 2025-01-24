@@ -1,6 +1,6 @@
 import React from "react";
 
-export type onBoardingDataData = {
+export type onBoardingDataType = {
   id: number | string;
   title: string;
   subtitle: string;
