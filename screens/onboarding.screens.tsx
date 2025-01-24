@@ -60,7 +60,14 @@ export default function OnBoardingScreen() {
         ))}
       </ScrollView>
 
-      <View style={styles.paginationContainer}></View>
+      <View style={styles.paginationContainer}>
+        {onBoardingData.map((_, index) => (
+          <View
+            key={index}
+            style={[styles.dot, { opacity: activeIndex === index ? 1 : 0.3 }]}
+          />
+        ))}
+      </View>
     </LinearGradient>
   );
 }
