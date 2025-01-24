@@ -52,6 +52,7 @@ export default function OnBoardingScreen() {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={handleScroll}
+        ref={scrollViewRef}
       >
         {onBoardingData.map((item: onBoardingDataType, index: number) => (
           <View key={index} style={styles.slide}>
