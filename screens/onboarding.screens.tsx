@@ -81,5 +81,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontFamily: "SegoeUI",
   },
-  subtitle: {},
+  subtitle: {
+    color: "#9A9999",
+    fontSize: scale(14),
+    fontFamily: "SegoeUI",
+    textAlign: "center",
+    fontWeight: "400",
+  },
 });
