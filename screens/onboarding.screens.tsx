@@ -13,8 +13,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
 import { scale } from "react-native-size-matters";
+import { useFonts } from "expo-font";
 
 export default function OnBoardingScreen() {
+  let [fontLoaded, fontError] = useFonts({
+    SegoeUI: require("../assets/fonts/Segoe-UI.ttf"),
+  });
+
+  if (!fontLoaded && !fontError) {
+    return null;
+  }
+
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -67,9 +76,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: scale(24),
+    fontSize: scale(23),
     textAlign: "center",
     fontWeight: "500",
+    fontFamily: "SegoeUI",
   },
   subtitle: {},
 });
