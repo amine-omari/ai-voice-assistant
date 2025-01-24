@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   paginationContainer: {
     position: "absolute",
-    bottom: verticalScale(50),
+    bottom: verticalScale(70),
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
