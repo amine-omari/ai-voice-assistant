@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
-import { scale } from "react-native-size-matters";
+import { scale, verticalScale } from "react-native-size-matters";
 import { useFonts } from "expo-font";
 
 export default function OnBoardingScreen() {
@@ -87,5 +87,8 @@ const styles = StyleSheet.create({
     fontFamily: "SegoeUI",
     textAlign: "center",
     fontWeight: "400",
+    width: scale(290),
+    marginHorizontal: "auto",
+    paddingTop: verticalScale(10),
   },
 });
