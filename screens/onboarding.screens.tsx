@@ -6,6 +6,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -42,6 +43,9 @@ export default function OnBoardingScreen() {
         {onBoardingData.map((item: onBoardingDataType, index: number) => (
           <View key={index} style={styles.slide}>
             {item.image}
+
+            <Text>{item.title}</Text>
+            <Text>{item.subtitle}</Text>
           </View>
         ))}
       </ScrollView>
