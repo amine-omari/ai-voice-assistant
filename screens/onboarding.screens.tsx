@@ -12,7 +12,6 @@ export default function OnBoardingScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
-      <OnBoarding1 />
     </LinearGradient>
   );
 }
