@@ -44,8 +44,8 @@ export default function OnBoardingScreen() {
           <View key={index} style={styles.slide}>
             {item.image}
 
-            <Text>{item.title}</Text>
-            <Text>{item.subtitle}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.subtitle}>{item.subtitle}</Text>
           </View>
         ))}
       </ScrollView>
@@ -63,5 +63,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     justifyContent: "center",
     alignItems: "center",
+  },
+  title: {
+    color: "#fff",
   },
 });
