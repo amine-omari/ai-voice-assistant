@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -12,7 +12,16 @@ import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
 
 export default function OnBoardingScreen() {
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {};
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const contentOffsetX = event.nativeEvent.contentOffset.x;
+    const currentIndex = Math.round(
+      contentOffsetX / event.nativeEvent.layoutMeasurement.width
+    );
+
+    setActiveIndex(currentIndex);
+  };
 
   return (
     <LinearGradient
