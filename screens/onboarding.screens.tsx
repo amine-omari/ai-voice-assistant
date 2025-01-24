@@ -101,4 +101,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: scale(10),
   },
+  dot: {
+    width: scale(10),
+    height: scale(10),
+    borderRadius: 100,
+    backgroundColor: "#fff",
+  },
 });
