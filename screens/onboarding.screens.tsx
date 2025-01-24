@@ -40,7 +40,9 @@ export default function OnBoardingScreen() {
         onScroll={handleScroll}
       >
         {onBoardingData.map((item: onBoardingDataType, index: number) => (
-          <View key={index} style={styles.slide}></View>
+          <View key={index} style={styles.slide}>
+            {item.image}
+          </View>
         ))}
       </ScrollView>
     </LinearGradient>
