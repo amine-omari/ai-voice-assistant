@@ -12,6 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { onBoardingData } from "@/config/constants";
 import { onBoardingDataType } from "@/config/global";
+import { scale } from "react-native-size-matters";
 
 export default function OnBoardingScreen() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -66,5 +67,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
+    fontSize: scale(24),
+    textAlign: "center",
+    fontWeight: "500",
   },
+  subtitle: {},
 });
