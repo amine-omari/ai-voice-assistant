@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
+  Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
@@ -39,7 +40,7 @@ export default function OnBoardingScreen() {
         onScroll={handleScroll}
       >
         {onBoardingData.map((item: onBoardingDataType, index: number) => (
-          <View key={index}></View>
+          <View key={index} style={styles.slide}></View>
         ))}
       </ScrollView>
     </LinearGradient>
@@ -49,6 +50,11 @@ export default function OnBoardingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  slide: {
+    width: Dimensions.get("window").width,
     justifyContent: "center",
     alignItems: "center",
   },
