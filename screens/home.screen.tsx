@@ -13,6 +13,7 @@ import { scale, verticalScale } from "react-native-size-matters";
 import { FontAwesome } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import axios from "axios";
+import LottieView from "lottie-react-native";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
@@ -156,20 +157,24 @@ export default function HomeScreen() {
       />
 
       <View style={{ marginTop: verticalScale(-40) }}>
-        <TouchableOpacity
-          style={{
-            width: scale(110),
-            height: scale(110),
-            backgroundColor: "#fff",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: scale(100),
-          }}
-          onPress={startRecording}
-        >
-          <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
-        </TouchableOpacity>
+        {!isRecording ? (
+          <TouchableOpacity
+            style={{
+              width: scale(110),
+              height: scale(110),
+              backgroundColor: "#fff",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: scale(100),
+            }}
+            onPress={startRecording}
+          >
+            <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={stopRecording}></TouchableOpacity>
+        )}
       </View>
 
       <View
