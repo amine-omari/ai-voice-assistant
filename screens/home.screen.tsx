@@ -13,6 +13,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
 
   return (
     <LinearGradient
