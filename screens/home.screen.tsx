@@ -7,13 +7,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { scale, verticalScale } from "react-native-size-matters";
-import { FontAwesome } from "@expo/vector-icons";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Audio } from "expo-av";
 import axios from "axios";
 import LottieView from "lottie-react-native";
+import * as Speech from "expo-speech";
+import Regenerate from "@/assets/svgs/regenerate";
+import Reload from "@/assets/svgs/reload";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
@@ -21,6 +25,8 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
   const [recording, setRecording] = useState<Audio.Recording>();
   const [AIResponse, setAIResponse] = useState(false);
+  const [AISpeaking, setAISpeaking] = useState(false);
+  const lottieRef = useRef<LottieView>(null);
 
   // get microphone permission
   const getMicrophonePermission = async () => {
@@ -29,8 +35,8 @@ export default function HomeScreen() {
 
       if (!granted) {
         Alert.alert(
-          "permission",
-          "please grant permission to access microphone"
+          "Permission",
+          "Please grant permission to access microphone"
         );
         return false;
       }
@@ -93,7 +99,11 @@ export default function HomeScreen() {
 
       // send audio to whisper API for transcription
       const transcript = await sendAudioToWhisper(uri!);
+
       setText(transcript);
+
+      // send the transcript to gpt-3.5-turbo API for response
+      await sendToGpt(transcript);
     } catch (error) {
       console.log("Failed to stop Recording", error);
       Alert.alert("Error", "Failed to stop Recording");
@@ -115,8 +125,8 @@ export default function HomeScreen() {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${process.env.Expo_PUBLIC_OPENAI_API_KEY}`,
-            "content-Type": "multipart/form-data",
+            Authorization: `Bearer ${process.env.EXPO_PUBLIC_OPENAI_API_KEY}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -125,6 +135,60 @@ export default function HomeScreen() {
       console.log(error);
     }
   };
+
+  // send text to gpt-3.5-turbo API
+  const sendToGpt = async (text: string) => {
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are Artifonia, a friendly AI assistant who responds naturally and refers to yourself as Artifonia when asked for your name. You are a helpful assistant who can answer questions and help with tasks. You must always respond in English, no matter the input language, and provide helpful, clear answers",
+            },
+            {
+              role: "user",
+              content: text,
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.EXPO_PUBLIC_OPENAI_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setText(response.data.choices[0].message.content);
+      setLoading(false);
+      setAIResponse(true);
+      await speakText(response.data.choices[0].message.content);
+      return response.data.choices[0].message.content;
+    } catch (error) {
+      console.log("Error sending text to GPT-3.5-turbo", error);
+    }
+  };
+
+  const speakText = async (text: string) => {
+    setAISpeaking(true);
+    const options = {
+      onDone: () => {
+        setAISpeaking(false);
+      },
+    };
+    Speech.speak(text, options);
+  };
+
+  useEffect(() => {
+    if (AISpeaking) {
+      lottieRef.current?.play();
+    } else {
+      lottieRef.current?.reset();
+    }
+  }, [AISpeaking]);
 
   return (
     <LinearGradient
@@ -156,24 +220,82 @@ export default function HomeScreen() {
         }}
       />
 
+      {/* Back arrow */}
+      {AIResponse && (
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            top: verticalScale(50),
+            left: scale(20),
+          }}
+          onPress={() => {
+            setIsRecording(false);
+            setAIResponse(false);
+            setText("");
+          }}
+        >
+          <AntDesign name="arrowleft" size={scale(20)} color="#fff" />
+        </TouchableOpacity>
+      )}
+
       <View style={{ marginTop: verticalScale(-40) }}>
-        {!isRecording ? (
-          <TouchableOpacity
-            style={{
-              width: scale(110),
-              height: scale(110),
-              backgroundColor: "#fff",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: scale(100),
-            }}
-            onPress={startRecording}
-          >
-            <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
+        {loading ? (
+          <TouchableOpacity>
+            <LottieView
+              source={require("@/assets/animations/loading.json")}
+              autoPlay
+              loop
+              speed={1.3}
+              style={{ width: scale(270), height: scale(270) }}
+            />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={stopRecording}></TouchableOpacity>
+          <>
+            {!isRecording ? (
+              <>
+                {AIResponse ? (
+                  <View>
+                    <LottieView
+                      ref={lottieRef}
+                      source={require("@/assets/animations/ai-speaking.json")}
+                      autoPlay={false}
+                      loop={false}
+                      style={{ width: scale(250), height: scale(250) }}
+                    />
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    style={{
+                      width: scale(110),
+                      height: scale(110),
+                      backgroundColor: "#fff",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: scale(100),
+                    }}
+                    onPress={startRecording}
+                  >
+                    <FontAwesome
+                      name="microphone"
+                      size={scale(50)}
+                      color="#2b3356"
+                    />
+                  </TouchableOpacity>
+                )}
+              </>
+            ) : (
+              <TouchableOpacity onPress={stopRecording}>
+                <LottieView
+                  source={require("@/assets/animations/animation.json")}
+                  autoPlay
+                  loop
+                  speed={1.3}
+                  style={{ width: scale(250), height: scale(250) }}
+                />
+              </TouchableOpacity>
+            )}
+          </>
         )}
       </View>
 
@@ -194,9 +316,30 @@ export default function HomeScreen() {
             lineHeight: 25,
           }}
         >
-          Press the Microphone to start recording
+          {loading ? "..." : text || "Press the Microphone to start recording!"}
         </Text>
       </View>
+      {AIResponse && (
+        <View
+          style={{
+            position: "absolute",
+            bottom: verticalScale(40),
+            left: 0,
+            paddingHorizontal: scale(30),
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: scale(360),
+          }}
+        >
+          <TouchableOpacity onPress={() => sendToGpt(text)}>
+            <Regenerate />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => speakText(text)}>
+            <Reload />
+          </TouchableOpacity>
+        </View>
+      )}
     </LinearGradient>
   );
 }
