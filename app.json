@@ -32,7 +32,11 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-av",
+      {
+        "microphonePermission": "Allow Artifonia to access your microphone."
+      }
     ],
     "experiments": {
       "typedRoutes": true
