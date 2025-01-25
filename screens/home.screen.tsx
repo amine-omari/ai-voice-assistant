@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { scale, verticalScale } from "react-native-size-matters";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function HomeScreen() {
+  const [text, setText] = useState("");
+
   return (
     <LinearGradient
       colors={["#250152", "#000"]}
