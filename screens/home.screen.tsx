@@ -15,6 +15,7 @@ export default function HomeScreen() {
   const [text, setText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [recording, setRecording] = useState();
 
   return (
     <LinearGradient
