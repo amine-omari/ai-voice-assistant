@@ -12,9 +12,12 @@ export default function index() {
       if (isOnboarding) {
         setIsOnboarding(false);
       }
+      setLoading(false);
     };
     checkOnboarding();
   }, []);
+
+  if (loading) return null;
 
   return (
     <Redirect href={isOnboarding ? "/(routes)/onboarding" : "/(routes)/home"} />
