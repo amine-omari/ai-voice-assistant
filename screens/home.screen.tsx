@@ -1,7 +1,7 @@
 import { Image, StatusBar, StyleSheet } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { scale } from "react-native-size-matters";
+import { scale, verticalScale } from "react-native-size-matters";
 
 export default function HomeScreen() {
   return (
@@ -21,6 +21,16 @@ export default function HomeScreen() {
           right: scale(-15),
           top: 0,
           width: scale(240),
+        }}
+      />
+
+      <Image
+        source={require("@/assets/main/purple-blur.png")}
+        style={{
+          position: "absolute",
+          left: scale(-15),
+          bottom: verticalScale(100),
+          width: scale(210),
         }}
       />
     </LinearGradient>
