@@ -56,6 +56,15 @@ export default function HomeScreen() {
           <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
         </TouchableOpacity>
       </View>
+
+      <View
+        style={{
+          alignItems: "center",
+          width: scale(350),
+          position: "absolute",
+          bottom: verticalScale(90),
+        }}
+      ></View>
     </LinearGradient>
   );
 }
