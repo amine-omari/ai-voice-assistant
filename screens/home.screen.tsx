@@ -1,7 +1,14 @@
-import { Image, StatusBar, StyleSheet } from "react-native";
+import {
+  Image,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { scale, verticalScale } from "react-native-size-matters";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   return (
@@ -33,6 +40,12 @@ export default function HomeScreen() {
           width: scale(210),
         }}
       />
+
+      <View style={{ marginTop: verticalScale(-40) }}>
+        <TouchableOpacity>
+          <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
+        </TouchableOpacity>
+      </View>
     </LinearGradient>
   );
 }
