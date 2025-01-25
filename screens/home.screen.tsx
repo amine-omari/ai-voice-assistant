@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { scale, verticalScale } from "react-native-size-matters";
 import { FontAwesome } from "@expo/vector-icons";
 import { Audio } from "expo-av";
+import axios from "axios";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
@@ -90,11 +91,37 @@ export default function HomeScreen() {
       const uri = recording?.getURI();
 
       // send audio to whisper API for transcription
-      const transcript = await sendAudioToWhisper(uri);
+      const transcript = await sendAudioToWhisper(uri!);
       setText(transcript);
     } catch (error) {
       console.log("Failed to stop Recording", error);
       Alert.alert("Error", "Failed to stop Recording");
+    }
+  };
+
+  const sendAudioToWhisper = async (uri: string) => {
+    try {
+      const formData: any = new FormData();
+      formData.append("file", {
+        uri,
+        type: "audio/wav",
+        name: "recording.wav",
+      });
+      formData.append("model", "whisper-1");
+
+      const response = await axios.post(
+        "https://api.openai.com/v1/audio/transcriptions",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.Expo_PUBLIC_OPENAI_API_KEY}`,
+            "content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response.data.text;
+    } catch (error) {
+      console.log(error);
     }
   };
 
