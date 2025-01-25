@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function index() {
   const [isOnboarding, setIsOnboarding] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkOnboarding = async () => {
