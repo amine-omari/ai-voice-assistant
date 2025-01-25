@@ -15,5 +15,7 @@ export default function index() {
     checkOnboarding();
   }, []);
 
-  return <Redirect href="/(routes)/onboarding" />;
+  return (
+    <Redirect href={isOnboarding ? "/(routes)/onboarding" : "/(routes)/home"} />
+  );
 }
