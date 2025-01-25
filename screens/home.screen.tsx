@@ -1,6 +1,7 @@
-import { StatusBar, StyleSheet } from "react-native";
+import { Image, StatusBar, StyleSheet } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { scale } from "react-native-size-matters";
 
 export default function HomeScreen() {
   return (
@@ -11,6 +12,17 @@ export default function HomeScreen() {
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
+
+      {/* Back Shadows */}
+      <Image
+        source={require("@/assets/main/blur.png")}
+        style={{
+          position: "absolute",
+          right: scale(-15),
+          top: 0,
+          width: scale(240),
+        }}
+      />
     </LinearGradient>
   );
 }
