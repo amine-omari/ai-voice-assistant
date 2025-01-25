@@ -39,6 +39,27 @@ export default function HomeScreen() {
     }
   };
 
+  const requestOptions = {
+    android: {
+      extension: ".wav",
+      outPutFormat: Audio.AndroidOutputFormat.MPEG_4,
+      androidEncoder: Audio.AndroidAudioEncoder.AAC,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+    },
+    ios: {
+      extension: ".wav",
+      audioQuality: Audio.IOSAudioQuality.HIGH,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+      linearPCMBitDepth: 16,
+      linearPCMIsBigEndian: false,
+      linearPCMIsFloat: false,
+    },
+  };
+
   const startRecording = async () => {
     const hasPermission = await getMicrophonePermission();
     if (!hasPermission) return;
