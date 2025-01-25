@@ -39,7 +39,7 @@ export default function HomeScreen() {
     }
   };
 
-  const requestOptions = {
+  const recordingOptions: any = {
     android: {
       extension: ".wav",
       outPutFormat: Audio.AndroidOutputFormat.MPEG_4,
@@ -70,7 +70,7 @@ export default function HomeScreen() {
         playsInSilentModeIOS: true,
       });
       setIsRecording(true);
-      const { recording } = await Audio.Recording.createAsync();
+      const { recording } = await Audio.Recording.createAsync(recordingOptions);
     } catch (error) {}
   };
 
