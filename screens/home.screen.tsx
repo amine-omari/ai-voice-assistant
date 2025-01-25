@@ -166,6 +166,7 @@ export default function HomeScreen() {
             justifyContent: "center",
             borderRadius: scale(100),
           }}
+          onPress={startRecording}
         >
           <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
         </TouchableOpacity>
