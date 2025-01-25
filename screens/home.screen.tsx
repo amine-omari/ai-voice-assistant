@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -10,7 +10,7 @@ export default function HomeScreen() {
       end={{ x: 1, y: 1 }}
       style={styles.container}
     >
-      <Text>HomeScreen</Text>
+      <StatusBar barStyle="light-content" />
     </LinearGradient>
   );
 }
