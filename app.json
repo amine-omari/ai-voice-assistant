@@ -33,7 +33,12 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-av"
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow AI assistant to access your microphone."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
