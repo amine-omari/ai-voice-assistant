@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: scale(5),
+    zIndex: 100,
   },
   skipText: {
     color: "#fff",
