@@ -39,6 +39,20 @@ export default function HomeScreen() {
     }
   };
 
+  const startRecording = async () => {
+    const hasPermission = await getMicrophonePermission();
+    if (!hasPermission) return;
+
+    try {
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+      });
+      setIsRecording(true);
+      const { recording } = await Audio.Recording.createAsync();
+    } catch (error) {}
+  };
+
   return (
     <LinearGradient
       colors={["#250152", "#000"]}
