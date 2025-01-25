@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function HomeScreen() {
   return (
-    <View>
+    <LinearGradient colors={[]}>
       <Text>HomeScreen</Text>
-    </View>
+    </LinearGradient>
   );
 }
 
