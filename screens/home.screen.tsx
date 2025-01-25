@@ -17,7 +17,7 @@ export default function HomeScreen() {
   const [text, setText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [recording, setRecording] = useState();
+  const [recording, setRecording] = useState<Audio.Recording>();
   const [AIResponse, setAIResponse] = useState(false);
 
   // get microphone permission
@@ -71,7 +71,11 @@ export default function HomeScreen() {
       });
       setIsRecording(true);
       const { recording } = await Audio.Recording.createAsync(recordingOptions);
-    } catch (error) {}
+      setRecording(recording);
+    } catch (error) {
+      console.log("Failed to start Recording", error);
+      Alert.alert("Error", "Failed to start Recording");
+    }
   };
 
   return (
