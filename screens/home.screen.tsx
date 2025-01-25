@@ -78,6 +78,26 @@ export default function HomeScreen() {
     }
   };
 
+  const stopRecording = async () => {
+    try {
+      setIsRecording(false);
+      setLoading(true);
+      await recording?.stopAndUnloadAsync();
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+      });
+
+      const uri = recording?.getURI();
+
+      // send audio to whisper API for transcription
+      const transcript = await sendAudioToWhisper(uri);
+      setText(transcript);
+    } catch (error) {
+      console.log("Failed to stop Recording", error);
+      Alert.alert("Error", "Failed to stop Recording");
+    }
+  };
+
   return (
     <LinearGradient
       colors={["#250152", "#000"]}
