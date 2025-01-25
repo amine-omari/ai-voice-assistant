@@ -2,6 +2,7 @@ import {
   Image,
   StatusBar,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -64,7 +65,19 @@ export default function HomeScreen() {
           position: "absolute",
           bottom: verticalScale(90),
         }}
-      ></View>
+      >
+        <Text
+          style={{
+            color: "#fff",
+            fontSize: scale(16),
+            width: scale(269),
+            textAlign: "center",
+            lineHeight: 25,
+          }}
+        >
+          Press the Microphone to start recording
+        </Text>
+      </View>
     </LinearGradient>
   );
 }
