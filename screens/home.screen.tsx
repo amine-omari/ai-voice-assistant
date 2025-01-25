@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StatusBar,
   StyleSheet,
@@ -10,6 +11,7 @@ import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { scale, verticalScale } from "react-native-size-matters";
 import { FontAwesome } from "@expo/vector-icons";
+import { Audio } from "expo-av";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
@@ -17,6 +19,25 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
   const [recording, setRecording] = useState();
   const [AIResponse, setAIResponse] = useState(false);
+
+  // get microphone permission
+  const getMicrophonePermission = async () => {
+    try {
+      const { granted } = await Audio.requestPermissionsAsync();
+
+      if (!granted) {
+        Alert.alert(
+          "permission",
+          "please grant permission to access microphone"
+        );
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
 
   return (
     <LinearGradient
