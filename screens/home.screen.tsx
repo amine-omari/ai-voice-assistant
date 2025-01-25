@@ -16,6 +16,7 @@ export default function HomeScreen() {
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
   const [recording, setRecording] = useState();
+  const [AIResponse, setAIResponse] = useState(false);
 
   return (
     <LinearGradient
