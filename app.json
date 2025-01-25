@@ -33,10 +33,7 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-av",
-      {
-        "microphonePermission": "Allow Artifonia to access your microphone."
-      }
+      "expo-av"
     ],
     "experiments": {
       "typedRoutes": true
