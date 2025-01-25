@@ -42,7 +42,17 @@ export default function HomeScreen() {
       />
 
       <View style={{ marginTop: verticalScale(-40) }}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            width: scale(110),
+            height: scale(110),
+            backgroundColor: "#fff",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: scale(100),
+          }}
+        >
           <FontAwesome name="microphone" size={scale(50)} color="#2b3356" />
         </TouchableOpacity>
       </View>
