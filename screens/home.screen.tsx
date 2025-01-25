@@ -175,6 +175,10 @@ export default function HomeScreen() {
   const speakText = async (text: string) => {
     setAISpeaking(true);
     const options = {
+      voice: "com.apple.ttsbundle.Samantha-compact",
+      language: "en-US",
+      pitch: 1.5,
+      rate: 1,
       onDone: () => {
         setAISpeaking(false);
       },
